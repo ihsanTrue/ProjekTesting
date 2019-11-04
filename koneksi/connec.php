@@ -9,6 +9,4 @@ $con = mysqli_connect($url, $user, $password, $dataBase);
 if ($con->connect_error){
 
     echo "gagal Koneksi ke databases : (" . $con-> connect_error. ")";
-}else{
-    echo "Koneksi Berhasil";
 }
