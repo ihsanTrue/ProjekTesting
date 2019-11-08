@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,10 +27,13 @@
     <!-- <link href="https://fonts.googleapis.com/css?family=Marck+Script&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">  -->
 
+    <link rel="shortcut icon" href="icon/1x/Asset 5.png" type="image/x-icon">
     <title>SiRent</title>
+
 </head>
 
 <body>
+
     <!-- Navbar -->
     <div id="potition" style="position: fixed; z-index: 1000; width: 100%;">
         <nav class="navbar navbar-light" style="background-color: white;">
@@ -44,13 +48,31 @@
                         <!-- button to modal -->
                         <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal"><img
                                 src="icon/user2.png" alt="user" style="width: 25px;">
-                            <span style="color: #007bff; font-family: 'Righteous', cursive;">Log In</span>
+                            <span style="color: #007bff; font-family: 'Righteous', cursive;">
+                            <!-- Log In -->
+                            <?php
+                                if (isset($_POST["submit"])) {
+                                    if ($_POST["username"] == "Sutrisno" && $_POST["password"] == "1234"){
+                                        echo $_POST["username"];
+                                        $logOut = true;
+                                    }else {
+                                        echo "<script language = 'JavaScript'>
+                                                alert('Anda belom terdaftar');
+                                             </script>";
+                                        echo "Log In";
+                                    }
+                                }else{
+                                    echo "Log In";
+                                }
+
+                            ?>
+                        </span>
                         </button>
 
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="Register.html">
                         <button type="button" class="btn btn-primary"><span
                                 style="font-family: 'Righteous', cursive;">Daftar</span></button>
                     </a>
@@ -107,36 +129,59 @@
             <br>
             <form>
                 <div class="row" style="margin-bottom: 16px;">
-                    <div class="col-12" style="margin-bottom: 16px;">
-                        <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Nama">
+                    <div class="col" style="margin-bottom: 16px;">
+                        <label for="Tanggal_sewa">Tanggal Sewa</label>
+                        <input type="text" class="form-control form-control-sm" name="Tanggal_sewa"
+                            placeholder="Tanggal sewa">
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control form-control-sm" id="colFormLabelSm" placeholder="Kota">
+
+                        <label for="durasi">Durasi</label>
+                        <div class="input-group mb-2 mr-sm-2">
+                            <div class="input-group-prepend ">
+                                <div class="input-group-text" style="height: 31px;">
+                                    <img src="icon/1x/day2.png" alt="" width="31px">
+                                </div>
+                            </div>
+
+                            <select class="form-control form-control-sm" name="durasi">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                            </select>
+                        </div>
+
+
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control form-control-sm" id="colFormLabelSm"
+                        <label for="Tanggal_kembali">Tanggal Kembali</label>
+                        <input type="text" class="form-control form-control-sm" name="Tanggal_kembali"
                             placeholder="Tanggal Sewa">
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                            pengembalian telat dikenakan denda 15% dari tarif mobil / day
+                        </small>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3">
-                        <input type="text" class="form-control form-control-sm" id="colFormLabelSm"
-                            placeholder="durasi">
+                    <div class="col-4">
 
-                    </div>
-                    <div class="col-3">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1">Dengan
+                        <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                            <input type="checkbox" class="custom-control-input" name="sopir">
+                            <label class="custom-control-label" for="sopir">Gunakan
                                 Supir</label>
                         </div>
                     </div>
                     <div class="col">
-                        <!-- -->
-
-                        <!-- </div> -->
-                        <button type="submit" class="btn btn-warning btn-sm" style="width: 70%; float: right;">
-                            <img src="icon/search.png" alt="" style="width: 30px;">
+                        <label for="biaya">Biaya penggunaan sopir :</label>
+                        <input type="text" class="form-control form-control-sm" name="biaya" placeholder="Rp. 0.0">
+                        <br>
+                        <button type="submit" class="btn btn-warning btn-sm col-4"
+                            style="width: 70%; float: right; background-color: orange;">
+                            <img src="icon/search.png" alt="" style="width: 30px; ">
                             Cari Mobil</button>
                     </div>
                 </div>
@@ -145,14 +190,65 @@
         </div>
     </div>
 
+
+
+    <!-- carausel -->
+    <div class="jumbotron" style="border: none; border-radius: 0; margin-top: 90px;">
+        <div id="carouselExampleIndicators" class="carousel slide container" data-ride="carousel"
+            style="margin-top: -110px;">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <h2 style="margin-top: 100px; text-align: center; font-family: 'Kanit', sans-serif; ">Tentang
+                        Kami
+                    </h2>
+                    <hr class="bg-warning" style="width: 50px; height: 2px; font-family: 'Kanit', sans-serif;">
+                    <p>SIRENT adalah perusahaan rental mobil yang menyediakan layanan peminjaman mobil dari berbagai
+                        perusahaan
+                        penyedia jasa rental mobil dalam satu platform, memungkinkan anda menciptakan momen liburan
+                        bersama keluarga
+                        tercinta. kami menawarkan kemudahan penyewaan mobil beserta sopir tanpa repot-repot kesana
+                        kemari mencari
+                        tempat peminjaman mobil yang nyaman dan terpercaya.</p>
+                </div>
+                <div class="carousel-item">
+                    <h2 style="margin-top: 100px; text-align: center; font-family: 'Kanit', sans-serif; ">Visi
+                    </h2>
+                    <hr class="bg-warning" style="width: 50px; height: 2px; font-family: 'Kanit', sans-serif;">
+                    <p>SIRENT adalah perusahaan rental mobil yang menyediakan layanan peminjaman mobil dari berbagai
+                        perusahaan
+                        penyedia jasa rental mobil dalam satu platform, memungkinkan anda menciptakan momen liburan
+                        bersama keluarga
+                        tercinta. kami menawarkan kemudahan penyewaan mobil beserta sopir tanpa repot-repot kesana
+                        kemari mencari
+                        tempat peminjaman mobil yang nyaman dan terpercaya.</p>
+                </div>
+                <div class="carousel-item">
+                    <h2 style="margin-top: 100px; text-align: center; font-family: 'Kanit', sans-serif; ">Misi
+                    </h2>
+                    <hr class="bg-warning" style="width: 50px; height: 2px; font-family: 'Kanit', sans-serif;">
+                    <p>SIRENT adalah perusahaan rental mobil yang menyediakan layanan peminjaman mobil dari berbagai
+                        perusahaan
+                        penyedia jasa rental mobil dalam satu platform, memungkinkan anda menciptakan momen liburan
+                        bersama keluarga
+                        tercinta. kami menawarkan kemudahan penyewaan mobil beserta sopir tanpa repot-repot kesana
+                        kemari mencari
+                        tempat peminjaman mobil yang nyaman dan terpercaya.</p>
+                </div>
+            </div>
+            <br>
+            <br>
+            <!-- -->
+        </div>
+
+    </div>
+
     <!-- container -->
     <div class="container">
-        <h2 style="margin-top: 100px; text-align: center; font-family: 'Kanit', sans-serif; ">Tentang Kami</h2>
-        <hr class="bg-warning" style="width: 50px; height: 2px; font-family: 'Kanit', sans-serif;">
-        <p>SIRENT adalah perusahaan rental mobil yang menyediakan layanan peminjaman mobil dari berbagai perusahaan
-            penyedia jasa rental mobil dalam satu platform, memungkinkan anda menciptakan momen liburan bersama keluarga
-            tercinta. kami menawarkan kemudahan penyewaan mobil beserta sopir tanpa repot-repot kesana kemari mencari
-            tempat peminjaman mobil yang nyaman dan terpercaya.</p>
 
         <br>
 
@@ -246,6 +342,7 @@
         <br>
         <br>
     </div>
+
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -259,21 +356,27 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method="POST" action="index.php">
                         <div class="form-group">
                             <label for="formGroupExampleInput" style="color: rgb(51, 51, 51);">Nama atau
                                 no. Telpon</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput">
+                            <input type="text" class="form-control" name="username">
                         </div>
                         <div class="form-group">
                             <label for="formGroupExampleInput2" style="color: rgb(51, 51, 51);">Password</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2">
+                            <input type="password" class="form-control" name="password">
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
-                                    <button type="button" class="btn btn-primary" style="width: 100%;">Log
-                                        In</button>
+                                <?php if (isset($logOut)): ?>
+                                    <button type="submit" class="btn btn-primary" style="width: 100%;" name = "submit">Log Out</button>
+
+                                <?php else : ?>
+                                    <button type="submit" class="btn btn-primary" style="width: 100%;" name = "submit">Log In</button> 
+                            
+                                <?php endif; ?>
+                                    
                                 </div>
                                 <div class="col-7">
                                     <p style="margin-bottom: 0%; margin-top: 0%; color: rgb(51, 51, 51);">
@@ -284,9 +387,14 @@
                         </div>
                     </form>
                 </div>
-                <!-- <div class="modal-footer">
+                <div class="modal-footer">
+                    <div class="container">
+                        <p
+                            style="margin-bottom: 0%; margin-top: 0%; color: rgb(51, 51, 51); font-family: 'Kanit', 'sans-serif';">
+                            Nikmati berbagai kemudahan dengan menjadi member Sirent.</p>
+                    </div>
 
-             </div> -->
+                </div>
             </div>
         </div>
     </div>
